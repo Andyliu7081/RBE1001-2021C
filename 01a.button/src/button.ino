@@ -33,35 +33,37 @@ void setup()
   bootButton.Init();
 }
 
-void HandleButtonPress(void)
-{
-  // TODO: count button presses
-  
-  if(robotState == ROBOT_IDLE)
-  {
-      // Notify us that we're switching to ACTIVE
-      Serial.println("Button press -> ACTIVE");
-
-      // TODO: Turn on the LED
-
-      // Finally, update the state
-      robotState = ROBOT_ACTIVE;
-  }
-
-  else if(robotState == ROBOT_ACTIVE)
-  {
-      // Notify us that we're switching to IDLE
-      Serial.println("Button press -> IDLE");
-
-      // TODO: Turn off the LED
-
-      // Finally, update the state
-      robotState = ROBOT_IDLE;
-  }
-}
-
+/* Here is where all the fun happens. For each state, check for and respond to a button press.
+ */ 
 void loop()
 {
-  // Check to see if the button is pressed
-  if(bootButton.CheckButtonPress()) HandleButtonPress();
+  // Go through the state machine
+  if(robotState == ROBOT_IDLE)
+  {
+    if(bootButton.CheckButtonPress()) //if the button was pressed, switch to ACTIVE
+    {
+      //notify us that we're switching to ACTIVE
+      Serial.println("Button press -> ACTIVE");
+
+      //TODO: turn the LED on
+
+      //finally, update the state
+      robotState = ROBOT_ACTIVE;
+    }
+  }
+
+  //note that we use else..if for each additional state, so it doesn't get confused
+  else if(robotState == ROBOT_ACTIVE)
+  {
+    if(bootButton.CheckButtonPress()) //if the button was pressed, switch to IDLE
+    {
+      //notify us that we're switching to IDLE
+      Serial.println("Button press -> IDLE");
+
+      //TODO: turn the LED off
+
+      //finally, update the state
+      robotState = ROBOT_IDLE;
+    }
+  }
 }
