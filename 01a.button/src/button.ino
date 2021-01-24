@@ -26,9 +26,8 @@ void setup()
   // Be sure to set your Serial Monitor appropriately in platformio.ini
   Serial.begin(115200);
 
-  // Set the LED pin to be an OUTPUT
-  pinMode(LED_PIN, OUTPUT);
-
+  // TODO: Set the LED pin to be an OUTPUT
+  
   // Initialize the button object
   bootButton.Init();
 }
@@ -42,12 +41,12 @@ void loop()
   {
     if(bootButton.CheckButtonPress()) //if the button was pressed, switch to ACTIVE
     {
-      //notify us that we're switching to ACTIVE
+      // Notify us that we're switching to ACTIVE
       Serial.println("Button press -> ACTIVE");
 
-      //TODO: turn the LED on
+      // TODO: Turn the LED on
 
-      //finally, update the state
+      // Finally, update the state
       robotState = ROBOT_ACTIVE;
     }
   }
@@ -57,12 +56,12 @@ void loop()
   {
     if(bootButton.CheckButtonPress()) //if the button was pressed, switch to IDLE
     {
-      //notify us that we're switching to IDLE
+      // Notify us that we're switching to IDLE
       Serial.println("Button press -> IDLE");
 
-      //TODO: turn the LED off
+      // TODO: Turn the LED off
 
-      //finally, update the state
+      // Finally, update the state
       robotState = ROBOT_IDLE;
     }
   }
